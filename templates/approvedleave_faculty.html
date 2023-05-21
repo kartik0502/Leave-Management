@@ -116,7 +116,27 @@
                     <h2>Approved Leaves of Students and TAs</h2>
                   </div>
                   <!-- Tab content -->
-                  
+
+                  <form method="GET" action="{% url 'approved_leave_data' %}?data_type={{ data_type }}&course={{ course }}">
+                    <label for="data_type" style="font-size: 16px;">Choose which data you want to see : </label>
+                    <select name="data_type" id="data_type" class="custom-select">
+                        <option value="ta">TA</option>
+                        <option value="student">Student</option>
+                    </select>
+                    <br>
+                    
+                    <label for="course" style="font-size: 16px;">Choose course : </label>
+                    <select name="course" id="course" class="custom-select">
+                        {% for course in faculty_data.courses %}
+                            <option value="{{ course }}">{{ course }}</option>
+                        {% endfor %}
+                    </select>
+                    <br>
+                    
+                    <input type="submit" value="View Data" class="btn btn-primary">
+                  </form>
+
+                  {% if leave_data %}
                   <div id="Approved" class="tabcontent">
                     
                     <table>
@@ -135,7 +155,6 @@
                         </thead>
                         <tbody>
                             {% for leave in leave_data %}
-                                <!-- {% if leave.status == "approved" %} -->
                                 <tr>
                                     <td>{{leave.id}}</td>
                                     <td>{{leave.name}}</td>
@@ -147,12 +166,12 @@
                                     <td>{{leave.role}}</td>
                             
                                 </tr>
-                                <!-- {% endif %} -->
                             {% endfor %}
                         </tbody>
                     </table>
 
                   </div>
+                  {% endif %}
                 </div>
 
         </div>

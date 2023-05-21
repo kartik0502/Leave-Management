@@ -107,53 +107,71 @@
                 </div>
 
                 <div class="tabs">
-                  <!-- <div class="tab">
-                    <button class="tablinks" onclick="redirectToPending()">Pending</button>
-                    <button class="tablinks" onclick="status(event, 'Approved')">Approved</button>
-                    <button class="tablinks" onclick="redirectToRejected()">Rejected</button>
-                  </div> -->
-                  <div class="title">
-                    <h2>Approved Leaves of Students</h2>
+                    <!-- <div class="tab">
+                      <button class="tablinks" onclick="redirectToPending()">Pending</button>
+                      <button class="tablinks" onclick="status(event, 'Approved')">Approved</button>
+                      <button class="tablinks" onclick="redirectToRejected()">Rejected</button>
+                    </div> -->
+                    <div class="title">
+                      <h2>Approved Leaves of Students and TAs</h2>
+                    </div>
+                    <!-- Tab content -->
+  
+                    <form method="GET" action="{% url 'approved_leave_data' %}?data_type={{ data_type }}&course={{ course }}">
+                      <label for="data_type" style="font-size: 16px;">Choose which data you want to see : </label>
+                      <select name="data_type" id="data_type" class="custom-select">
+                          <option value="student">Student</option>
+                      </select>
+                      <br>
+                      
+                      <label for="course" style="font-size: 16px;">Choose course : </label>
+                      <select name="course" id="course" class="custom-select">
+                          {% for course in ta.courses %}
+                              <option value="{{ course }}">{{ course }}</option>
+                          {% endfor %}
+                      </select>
+                      <br>
+                      
+                      <input type="submit" value="View Data" class="btn btn-primary">
+                    </form>
+  
+                    {% if leave_data %}
+                    <div id="Approved" class="tabcontent">
+                      
+                      <table>
+                          <thead>
+                              <tr>
+                                  <th>Id</th>
+                                  <th>Name</th>
+                                  <th>Leave Type</th>
+                                  <th>Leave Duration</th>
+                                  <th>From</th>
+                                  <th>To</th>
+                                  <th>Reason</th>
+                                  <th>Role</th>
+                                  <!-- <th></th> -->
+                              </tr>
+                          </thead>
+                          <tbody>
+                              {% for leave in leave_data %}
+                                  <tr>
+                                      <td>{{leave.id}}</td>
+                                      <td>{{leave.name}}</td>
+                                      <td>{{leave.leave_type}}</td>
+                                      <td>{{leave.leave_duration}}</td>
+                                      <td>{{leave.from_date}}</td>
+                                      <td>{{leave.to_date}}</td>
+                                      <td>{{leave.reason}}</td>
+                                      <td>{{leave.role}}</td>
+                              
+                                  </tr>
+                              {% endfor %}
+                          </tbody>
+                      </table>
+  
+                    </div>
+                    {% endif %}
                   </div>
-                  <!-- Tab content -->
-                  
-                  <div id="Approved" class="tabcontent">
-                    
-                    <table>
-                        <thead>
-                            <tr>
-                                <th>Id</th>
-                                <th>Name</th>
-                                <th>Leave Type</th>
-                                <th>Leave Duration</th>
-                                <th>From</th>
-                                <th>To</th>
-                                <th>Reason</th>
-                                <!-- <th>Role</th> -->
-                                <!-- <th></th> -->
-                            </tr>
-                        </thead>
-                        <tbody>
-                            {% for leave in leave_data %}
-                                <!-- {% if leave.status == "approved" %} -->
-                                <tr>
-                                    <td>{{leave.id}}</td>
-                                    <td>{{leave.name}}</td>
-                                    <td>{{leave.leave_type}}</td>
-                                    <td>{{leave.leave_duration}}</td>
-                                    <td>{{leave.from_date}}</td>
-                                    <td>{{leave.to_date}}</td>
-                                    <td>{{leave.reason}}</td>
-                                    <td>{{leave.role}}</td>
-                            
-                                </tr>
-                                <!-- {% endif %} -->
-                            {% endfor %}
-                        </tbody>
-                    </table>
-
-                  </div>
-                </div>
 
         </div>
 

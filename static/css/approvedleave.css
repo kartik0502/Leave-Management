@@ -658,3 +658,36 @@ aside .sidebar .message-count {
     }
 }
 
+.custom-select {
+    /* Add your desired styles here */
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    padding: 8px;
+    font-size: 16px;
+    width: 200px;
+    margin-top: 8px;
+}
+
+.custom-select:focus {
+    /* Add styles for the focused state if needed */
+    outline: none;
+    border-color: #007bff;
+    box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.25);
+}
+
+.btn {
+    /* Add your desired button styles here */
+    display: inline-block;
+    padding: 8px 16px;
+    font-size: 14px;
+    font-weight: bold;
+    text-align: center;
+    text-decoration: none;
+    cursor: pointer;
+    border: none;
+    border-radius: 4px;
+    color: #fff;
+    background-color: #007bff;
+    margin-top: 8px;
+    margin-bottom: 10px;
+}
